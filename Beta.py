@@ -14,7 +14,7 @@ import tensorflow as tf
 # Get images
 # Change to '/data/images/Train/' to use all the 10k images
 X = []
-for filename in os.listdir('Beta-dataset/Train'):
+for filename in os.listdir('Beta-dataset/Train'):			
     X.append(img_to_array(load_img('Beta-dataset/Train/'+filename)))
 X = np.array(X, dtype=float)
 
@@ -23,6 +23,7 @@ split = int(0.95*len(X))
 Xtrain = X[:split]
 Xtrain = 1.0/255*Xtrain
 
+# try to shrink the model "A LOT"
 model = Sequential()
 model.add(InputLayer(input_shape=(256, 256, 1)))
 model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
@@ -97,28 +98,3 @@ for i in range(len(output)):
 	cur[:,:,0] = color_me[i][:,:,0]
 	cur[:,:,1:] = output[i]
 	imsave("Beta-dataset/result/img_"+str(i)+".png", lab2rgb(cur))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
